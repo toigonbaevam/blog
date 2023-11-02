@@ -1,0 +1,114 @@
+
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Blog Madina Toigonbaeva</title>
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+</head>
+<body>
+
+
+
+    <section id="title" class="title-section" style="background-image: url('{% static "blog/img/background.jpg" %}')">
+
+        <h1>Blog</h1>
+        <h2>Madina</h2>
+
+        <div class="title-cfa">
+            <a href="#articles">
+                <button>
+                    Articles
+                </button>
+            </a>
+
+            <button>
+                YouTube
+            </button>
+
+        </div>
+
+    </section>
+    <nav class="nav info-nav">
+        <a class="nav-link" href="{{ latest.get_absolute_url }}">
+            
+        </a>
+        <a class="nav-link" href="#">
+            Soon!
+        </a>
+    </nav>
+
+    <section id="articles" class="article-section">
+        <div id='search' class="search-wrapper">
+            <form method="GET" , action="">
+                <input class="search-box" type="text" name="q"
+                       placeholder="Search">
+                <button class="search-button" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+
+    </section>
+    <div class="container-fluid">
+        <div class="row justify-content-around articles-wrapper mb-5">
+                <div data-aos="fade-up" class="col-md-6 col-lg-4 mt-3">
+                    <div class="card" style="width: 100%">
+                        <img class="card-img-top" src="{{ post.image.url }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h2 class="card-title"></h2>
+                                <p class="post-tag"></p>
+                            <p class="card-text"></p>
+                            <a href="{{ post.get_absolute_url }}">
+                                <button class="button-simple">Submit</button>
+                            </a>
+                                <hr>
+                                <h4>Admin:</h4>
+                                <div class="post-admin-manage">
+                                    <a href="{{ post.get_delete_url }}">
+                                        <button class="button-simple" type="submit">Delete post</button>
+                                    </a>
+                                    <a href="{{ post.get_update_url }}">
+                                        <button class="button-simple ml-3" type="submit">Update post</button>
+                                    </a>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+    <section id="newsletter" class="newsletter-section">
+        <div data-aos="fade-up" class="nwsltr-wrapper">
+            <h3>Do you like my post?</h3>
+            <h5>News!</h5>
+            <form method="POST">
+                <button class="button-simple">
+                    Join!
+                </button>
+            </form>
+        </div>
+
+
+    </section>
+
+
+    <script>
+        AOS.init();
+                Swal.fire({
+                    title: '{{mess.tags|capfirst}}',
+                    text: '{{ mess|safe }}',
+                    icon: '{{mess.tags}}',
+                    confirmButtonText: 'ok',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+        if (window.location.search.indexOf('q') > -1) {
+            document.getElementById('search').scrollIntoView();
+        }
+    </script>
+
+
+
+</body>
